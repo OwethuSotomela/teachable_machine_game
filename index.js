@@ -1,8 +1,10 @@
 const express = require('express');
-const {engine} = require('express-handlebars');
+const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
+const teachable = require('./teachableGame');
+const { Pool } = require('pg');
 
 const app = express();
 
@@ -21,15 +23,67 @@ app.use(flash());
 app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.get('/', async function(req, res) {
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/teachableMachinGame';
+
+const pool = new Pool({
+    connectionString: connectionString,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
+const machineGame = teachable(pool)
+
+app.get('/', async function (req, res) {
     res.render('index')
 })
 
-app.get('/level1', async function(req, res){
-    res.render('level1')
+app.post('/login', async function (req, res, next) {
+    try {
+        let player = req.body.username;
+        console.log(player)
+        let playerList = await machineGame.player(player)
+        let playersInGame = await machineGame.getPlayers(player)
+        // console.log(playersInGame)
+        console.log(playerList)
+        if (player == "") {
+            req.flash('Hey, you dont exist')
+        } else {
+            res.render('step1oflevel1', {
+                playerList: playerList,
+            })
+        }
+
+    } catch (error) {
+        next(error)
+    }
+    res.render('')
+})
+
+app.get('/level1', async function (req, res) {
+    res.render('stage1oflevel1')
+})
+
+app.post('/step2oflevel1', async function (req, res) {
+    res.render('step2oflevel1')
+})
+
+app.get('/stage2oflevel1', async function (req, res) {
+    res.render('stage2oflevel1')
+})
+
+app.get('/reward', async function (req, res) {
+    res.render('reward')
+})
+
+app.post('/register', async function (req, res) {
+    let name = req.body.fullname;
+    let username = req.body.newuser;
+    console.log(name, username)
+    res.render('/')
 })
 
 const PORT = process.env.PORT || 2001;
-app.listen(PORT, function(){
+app.listen(PORT, function () {
     console.log("App started at port:", PORT)
-}); 
+});

@@ -1,12 +1,21 @@
-body{
-    /* background-color: blue; */
-}
 .container{
     text-align: center;
     margin-top: 3em;
-    /* border: : 3px solid blue; */
+    /* background-image:url(../images/sg4.png); */
+    background-size:cover;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border: 3px solid navy;
+    border-radius: 12px;
 }
 
-.border {
-    border-radius: 12px solid black;
+h2{
+    font-family: 'Times New Roman', Times, serif;
+    /* color: white; */
+}
+.btn{
+    display: none;
+}
+.success{
+    display: none;
 }
