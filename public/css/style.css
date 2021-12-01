@@ -1,0 +1,12 @@
+body{
+    /* background-color: blue; */
+}
+.container{
+    text-align: center;
+    margin-top: 3em;
+    /* border: : 3px solid blue; */
+}
+
+.border {
+    border-radius: 12px solid black;
+}
