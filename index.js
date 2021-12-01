@@ -25,8 +25,8 @@ app.get('/', async function(req, res) {
     res.render('index')
 })
 
-app.post('/level1', async function(req, res){
-    res.render('leve1')
+app.get('/level1', async function(req, res){
+    res.render('level1')
 })
 
 const PORT = process.env.PORT || 2001;
