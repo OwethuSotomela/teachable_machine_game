@@ -51,11 +51,9 @@ app.post('/login', async function (req, res, next) {
                 playerList: playerList,
             })
         }
-
-    } catch (error) {
-        next(error)
-    }
-    res.render('')
+} catch (error) {
+    next(error)
+}
 })
 
 app.get('/level1', async function (req, res) {
