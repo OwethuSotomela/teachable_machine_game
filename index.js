@@ -43,8 +43,6 @@ app.post('/login', async function (req, res, next) {
         let player = req.body.username;
         console.log(player)
         let playerList = await machineGame.player(player)
-        let playersInGame = await machineGame.getPlayers(player)
-        // console.log(playersInGame)
         console.log(playerList)
         if (player == "") {
             req.flash('Hey, you dont exist')
@@ -65,7 +63,12 @@ app.get('/level1', async function (req, res) {
 });
 
 app.post('/step2oflevel1', async function (req, res) {
-    res.render('step2oflevel1')
+    let player = req.body.username;
+    console.log(player)
+    let playerList = await machineGame.player(player)
+    res.render('step2oflevel1', {
+        playerList
+    })
 });
 
 app.get('/feedback', async function (req, res) {
@@ -84,13 +87,9 @@ app.get('/reward', async function (req, res) {
     res.render('reward')
 });
 
-app.post('/register', async function (req, res) {
-    let name = req.body.fullname;
-    let username = req.body.newuser;
-    console.log(name, username)
-    res.render('/')
+app.get('/endGame', async function (req, res) {
+    res.redirect('/')
 })
-
 const PORT = process.env.PORT || 2001;
 app.listen(PORT, function () {
     console.log("App started at port:", PORT)

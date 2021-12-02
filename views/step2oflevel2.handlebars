@@ -1,13 +1,23 @@
-<div class="">
-    <h1>Step-2 Level-2</h1>
+<div class="stepTwo">
+    <h1 class="headOne">Stage 2 Level 2</h1>
+    <div class="instructions" id="instructions">
+        <ul>
+            <li>You must show us number Seven. </li>
+            <li> Draw on paper number Seven</li>
+            <li>You will be able to containue to the next stage if you passed.</li>
+        </ul>
+    </div>
+
     <form action="/reward" method="GET">
         <button type="submit" class="btn btn-outline-info">Claim-a-Trophy</button>
     </form>
-    <h1>Step 2 Level 2</h1>
-    <div class="success" id="success"> Yay! Correct, you can proceed to the next step!</div>
-    <form action="/step2" method="POST">
+
+    <div class="success" id="success"> Yay! Correct, you have completed level 2!</div>
+
+    <form action="/reward" method="GET">
         <button class="next" id='next' type="submit">Next step</button>
     </form>
+
     <button id="start" type="button" onclick="init()">Start</button>
     <div id="webcam-container"></div>
     <div id="label-container"></div>
