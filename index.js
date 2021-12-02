@@ -62,19 +62,27 @@ app.post('/login', async function (req, res, next) {
 
 app.get('/level1', async function (req, res) {
     res.render('stage1oflevel1')
-})
+});
 
 app.post('/step2oflevel1', async function (req, res) {
     res.render('step2oflevel1')
-})
+});
 
-app.get('/stage2oflevel1', async function (req, res) {
-    res.render('stage2oflevel1')
-})
+app.get('/feedback', async function (req, res) {
+    res.render('feedback')
+});
+
+app.get('/step1oflevel2', async function (req, res) {
+    res.render('step1oflevel2')
+});
+
+app.get('/step2oflevel2', async function (req, res) {
+    res.render('step2oflevel2')
+});
 
 app.get('/reward', async function (req, res) {
     res.render('reward')
-})
+});
 
 app.post('/register', async function (req, res) {
     let name = req.body.fullname;

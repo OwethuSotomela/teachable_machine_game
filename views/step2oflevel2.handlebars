@@ -1,7 +1,11 @@
 <div class="">
-    <h1>Step 1 Level 1</h1>
+    <h1>Step-2 Level-2</h1>
+    <form action="/reward" method="GET">
+        <button type="submit" class="btn btn-outline-info">Claim-a-Trophy</button>
+    </form>
+    <h1>Step 2 Level 2</h1>
     <div class="success" id="success"> Yay! Correct, you can proceed to the next step!</div>
-    <form action="/step2oflevel1" method="POST">
+    <form action="/step2" method="POST">
         <button class="next" id='next' type="submit">Next step</button>
     </form>
     <button id="start" type="button" onclick="init()">Start</button>
@@ -13,7 +17,7 @@
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/E-LVgEcsf/";
+        const URL = "https://teachablemachine.withgoogle.com/models/nvL3ugSZ-R/";
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
@@ -51,7 +55,7 @@
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
-                if (prediction[i].className === 'Square' && prediction[i].probability.toFixed(2) === '1.00') {
+                if (prediction[i].className === 'Seven' && prediction[i].probability.toFixed(2) >= '0.83') {
                     document.querySelector('.next').classList.remove('next');
                     document.querySelector('.success').classList.remove('success');
                     document.getElementById('webcam-container').remove();
